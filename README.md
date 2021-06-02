@@ -5,11 +5,11 @@ This Rest API App is the basic setup JWT authentication and authorization using 
 # TOOLS
 
 ## IDE
-You can download from [here]][https://spring.io/tools]
+You can download from [here]](https://spring.io/tools)
 
 ## Postman
 
-Download postman for testing the application. Click [here][https://www.postman.com/downloads/]
+Download postman for testing the application. Click [here](https://www.postman.com/downloads/)
 
 ## Mysql
 
@@ -19,6 +19,7 @@ Download MySql and setup the database.
 Database Name: DemoDB
 Table Name: User
 
+```mysql
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `active` int DEFAULT NULL,
@@ -40,9 +41,11 @@ VALUES
 <{username: }>,
 <{password: }>,
 <{roles: }>);
+```
+Export the data from the **Database_UserTable.csv**
 
-Export the data from the Database_UserTable.csv
-
+**Default Database port**: localhost:3306
+#### Note: Refer src/main/resources/application.properties
 ---
 # How to Run?
 1. git clone https://github.com/SeeTheC/JWT-Authentication-SpringBoot.git 
@@ -57,20 +60,50 @@ Export the data from the Database_UserTable.csv
 4. Create Request-1:
   Post Request. URl http://localhost:8080/auth
   Body JSON:
+  ## Admin Role
+```json
   {
     "username": "foo",
-    "password": "foo"
+    "password": "pass"
   }
+```
+  ## User Role
+```json
+  {
+    "username": "fun",
+    "password": "pass"
+  }
+```
+
 5. Send Request-1 by clicking on send button
   You will get response something like this
+```json
   {
     "jwt": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmb28iLCJleHAiOjE2MjIzNTYwNzEsImlhdCI6MTYyMjMyMDA3MX0.RzOb5TUHym7jDCB1-uRMCtDggq8g7V2DRwvygwDim64"
- }
-6. Create Request-2
-  Get Request. Url http://localhost:8080/hello
-  Header: 
-  Key as "Authorization"
-  Value as "Bearer <your jwt token result of step 5>"
-7. Send Request-1 by clicking on send button
-   You will get response as "Hello Word" for 200 Response code
+  }
+```
+6. Create Request-2 **ADMIN ROLE**.
+
+   Get Request. Url http://localhost:8080/admin or http://localhost:8080/user
   
+   Header: 
+  
+   Key as "Authorization"
+  
+   Value as "Bearer <your jwt token result of step 5>"
+8. Send Request-2 by clicking on send button
+  
+   You will get response as "Hello admin" for 200 Response code
+7. Create Request-3 [**User ROLE**]
+   
+   Get Request. Url http://localhost:8080/user
+  
+   Header:
+  
+   Key as "Authorization"
+  
+   Value as "Bearer <your jwt token result of step 5>"
+
+9. Send Request-4 by clicking on send button
+  
+    You will get response as "Hello user" for 200 Response code
