@@ -1,3 +1,0 @@
-"id","active","username","password","roles"
-1,1,"foo","pass","ROLE_Admin"
-2,1,"fun","pass","ROLE_User"
